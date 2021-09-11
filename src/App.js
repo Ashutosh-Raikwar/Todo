@@ -18,10 +18,13 @@ class App extends React.Component{
   onChange = e =>{
     this.setState({input: e.target.value})
   }
-  onClick =() =>{}
+  onClick = id =>{
+    console.log(id);
+  }
   onSubmit = e => {
     e.preventDefault();
-    this.setState({items: this.state.items.concat(this.state.input), input:''});
+    const items= {id: new Date().getTime(), text : this.state.input, isCompleted: false}
+    this.setState({items: this.state.items.concat(items), input:''});
   }
   onDelete = () => {}
 
@@ -29,12 +32,12 @@ class App extends React.Component{
     return(
     <form id="todo-list" onSubmit={this.onSubmit}>
       {this.state.items.length > 0?
-      this.state.items.map((item) => {
+      this.state.items.map((item,i) => {
         return(
-            <sapn className="todo-wrap">
-              <span>
-                <input type="checkbox" />
-                <label for="1" className="todo"><i className="fa fa-check"></i></label>
+            <sapn className="todo-wrap" key={i}>
+              <span onClick={()=> this.onClick(item.id)}>
+                <input type="checkbox" checked={item.isCompleted} />
+                <label className="todo"><i className=""></i>{item.text}</label>
               </span>
               <span className="delete-item" title="remove">
                 <i className="fa fa-times-circle"></i>

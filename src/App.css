@@ -1,3 +1,8 @@
+
+html{
+  background-color: gray;
+}
+
 #todo-list{
   height: 100px;
   width: 300px;
@@ -10,3 +15,4 @@
 #add-todo{
   cursor: pointer;
 }
+
